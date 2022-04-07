@@ -30,7 +30,7 @@ Using combination of various component. We can achieve seamless secure natively 
 
 ### Steps
 
-> Assumption: You have AAD Application Created for ADB and have noted down Application ID and Associated Secret. 
+> Assumption: You have AAD Application Created for ADB which will be consumed by Power App Flows Conenctor and have noted down Application ID and Associated Secret. 
 
 1. Build Custom Connector
 
