@@ -50,6 +50,11 @@ Using combination of various component. We can achieve seamless secure natively 
 
 3. Create Flow and Test Connection
 
+### Accolades
+
+- Special appreciation to **Pooja Sinde** who has written excellent [medium article](https://medium.com/@poojaanilshinde/create-azure-logic-apps-custom-connector-for-azure-databricks-e51f4524ab27) on same topic using different auth approach
+
+- My colleague and friend **Charles Bernard** who was partner in-crime to debug and find out hidden magic behind the scene and co-author of this repo.
 
 
 
