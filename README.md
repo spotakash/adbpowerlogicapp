@@ -2,20 +2,20 @@
 
 In this small repo, we are trying to show how easy and out-of-box to set up Azure Active Directory (AAD) OAuth2.0 based Power Apps Flow integration with Azure Databricks.
 
-    # Note: Same approach (almost 99.9% same steps) can be repeated if you are using Azure Logic App for building any Businss Integration Solution with Azure Databricks
+> Note: Same approach (almost 99.9% same steps) can be repeated if you are using Azure Logic App for building any Business Integration Solution with Azure Databricks
 
 ## Scenario:
 
-- *End User to System:* There is front end portal which can be accessed by authenticated/authorized users from Azure AD (AAD). This portal has one interface which is nothing but some function or code button <behind the scene code/ or javascript/ let's assume>. User interract with this fucntion by trigger this function by feeding information or it can be static function without input (use case be anything). 
+- *End User to System:* There is front end portal which can be accessed by authenticated/authorized users from Azure AD (AAD). This portal has one interface which is nothing but some function or code button <behind the scenes code/ or javascript/ let's assume>. User interact with this function by trigger this function by feeding information or it can be static function without input (use case be anything). 
 
-- *Portal to Power Apps Flow:* Once function trigger, it basically trigger Microsoft Power  Apps Flow behind the scene (Logic App equivalent in Azure, based upon http request). Gone are those days, where we need to club everything together. Using Power Apps Flow/Azure Logic App, application process can easily be de-coupled. 
+- *Portal to Power Apps Flow:* Once function trigger, it triggers Microsoft Power  Apps Flow behind the scene (Logic App equivalent in Azure, based upon http request). Gone are those days, where we need to club everything together. Using Power Apps Flow/Azure Logic App, application process can easily be de-coupled. 
 
-- *Power Apps Flow to Azure Databricks (ADB):* Now comes the interesting part, ADB can be non-interactively consumed from using various ways. In this repo, we shall see how Natively Power Apps  Flow can talk to ADB and seamless perform OAuth token exchange for query execution on  its (while request coming from Flow ultimately by End User vis Some Interface i.e. GUI).
+- *Power Apps Flow to Azure Databricks (ADB):* Now comes the interesting part, ADB can be non-interactively consumed from using many ways. In this repo, we shall see how Natively Power Apps  Flow can talk to ADB and seamless perform OAuth token exchange for query execution on its (while request coming from Flow by End User vis Some Interface i.e. GUI).
 
 
 ## High Level Design
 
-Using combination of various component. We can achieve seamless secure natively authenticatd request flow to ADB. 
+Using combination of various component. We can achieve seamless secure natively authenticated request flow to ADB. 
 
 <img src="Architecture/ADBPowerApp.jpg" width=70% height=70%>
 
@@ -28,23 +28,23 @@ Using combination of various component. We can achieve seamless secure natively 
 
 > Assumption: You have Power Apps Portal already set up as well as Azure Databricks cluster. We shall only show how to set up integration Power Apps Flow to ADB
 
-### Steps
+### Steps 
 
-> Assumption: You have AAD Application Created for ADB which will be consumed by Power App Flows Conenctor and have noted down Application ID and Associated Secret. 
+> Assumption: You have AAD Application Created for ADB which will be consumed by Power App Flows Connector and have noted down Application ID and Associated Secret. 
 
 1. Build Custom Connector
 
-    1.1. *Create Custom Connector*: Inside Power Apps portal, go to 'Data>Custom Connector' and creat connector from scracth. Use 'Create from  blank'.
+    1.1. *Create Custom Connector*: Inside Power Apps portal, go to 'Data>Custom Connector' and create connector from scratch. Use 'Create from blank'.
     
     <img src="Architecture/CustomerConnector.jpg" width=40% height=40%>
     
-    1.2. *Add Securtiy Details*: Add your ADB Cluster URL 
+    1.2. *Add Securityy Details*: Add your ADB Cluster URL 
     
-    <img src="Architecture/CustomerConenct1.2.jpg" width=40% height=40%>
+    <img src="Architecture/Custom_Connector_General.jpg" width=40% height=40%>
 
     Add AAD Application Client ID/Associate Secret Details. Note down **"Redirect URL"** and add **"Resource URL"** ``2ff814a6-3304-4ab8-85cb-cd0e6f879c1d``. Scope should be **"user_impersonation"**
 
-    <img src="Architecture/CustomerConenct1.3.jpg" width=40% height=40%>
+    <img src="Architecture/Custom_Connector_Security.jpg" width=40% height=40%>
 
     1.3 *Update AAD Application Return URL*: Now add Return URL (Copied from Step 1.2 to Application created in AAD, so that URIs will accept as destinations when returning authentication responses (tokens). 
 
@@ -60,25 +60,31 @@ Using combination of various component. We can achieve seamless secure natively 
 
     Add Action Name/Operation ID of Trigger
     
-    <img src="Architecture/CustomerConenct1.4.jpg" width=40% height=40%> 
+    <img src="Architecture/Custom_Connector.png" width=40% height=40%> 
 
     Create Action Request
 
-    <img src="Architecture/adb-action.png" width=40% height=40%>
+    <img src="Architecture/Custom_Connect_Action.jpg" width=40% height=40%>
 
     Add Parameter for Action Request
 
-    <img src="Architecture/CustomerConenct1.4_Request.jpg" width=40% height=40%> 
+    <img src="Architecture/Customer_Connector_Action_Parameter.jpg" width=20% height=20%> 
 
-    1.6 *Test Connector*: Post updating connector. Perform Test so that we are sure that it is working and returning result. Now here you will use ``Job ID`` of ADB which you have noted down in step 1.5. You will get 400 but you will notice Bearer Token which means prove that connector is worker fine. Next Create Connection of from connector.
+    1.6 *Test Connector*: Post updating connector. Perform Test so that we are sure that it is working and returning result. Now here you will use ``Job ID`` of ADB which you have noted down in step 1. ``Status 200`` mean everything working fine
+    <img src="Architecture/Custom_Connector_Test.jpg" width=40% height=40%>
 
-2. *Create Connection*: Post Connector Provision, create Connection. Once prompt comes-up, use credential to authorize it.
+2. *Create Connection*: Post Connector Provision, create Connection. Once prompt comes-up, use credential to authorize it. 
+    <img src="Architecture/Custom_Connector_Connection.jpg" width=30% height=30%>
 
-3. *Create Flow and Test Connection*: Create sample Power Apps Flow.
+3. *Create Flow and Test Connection*: Create sample Power Apps Flow. Sample Action where you can start seeing your custom connection and associated `Actions`.
 
-    You can validate how Connector, ADB, Power Apps, Flow are all working together and interracting with AAD by going into ``Sign-in logs``
+    <img src="Architecture/Flow_with_Customer_Connector.png" width=40% height=40%>
 
-    <img src="Architecture/aad_logs.png" width=40% height=40%>
+    <img src="Architecture/Flow_Success_Execution.png" width=40% height=40%>
+
+4. *Bonus Step: Validate How AAD Interaction is happening and Token Exchanges*: You can validate how Connector, ADB, Power Apps, Flow are all working together and interacting with AAD by going into ``Sign-in logs``
+
+    <img src="Architecture/aad_logs.png" width=50% height=50%>
 ### Accolades
 
 - Special appreciation to **Pooja Sinde** who has written excellent [medium article](https://medium.com/@poojaanilshinde/create-azure-logic-apps-custom-connector-for-azure-databricks-e51f4524ab27) on same topic using different auth approach
