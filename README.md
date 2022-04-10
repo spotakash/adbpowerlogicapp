@@ -86,7 +86,7 @@ Using combination of various component. We can achieve seamless secure natively 
 
 4. *Bonus Step: Validate How AAD Interaction is happening and Token Exchanges*: You can validate how Connector, ADB, Power Apps, Flow are all working together and interacting with AAD by going into ``Sign-in logs``
 
-    <img src="Architecture/aad_logs.png" width=50% height=50%>
+    <img src="Architecture/aad_logs.png" width=70% height=70%>
 ### Accolades
 
 - Special appreciation to **Pooja Sinde** who has written excellent [medium article](https://medium.com/@poojaanilshinde/create-azure-logic-apps-custom-connector-for-azure-databricks-e51f4524ab27) on same topic using different auth approach
