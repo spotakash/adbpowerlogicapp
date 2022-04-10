@@ -32,7 +32,7 @@ Using combination of various component. We can achieve seamless secure natively 
 
 > Assumption: You have AAD Application Created for ADB which will be consumed by Power App Flows Connector and have noted down Application ID and Associated Secret. 
 
-1. Build Custom Connector
+1. **Build Custom Connector**
 
     1.1. **Create Custom Connector**: Inside Power Apps portal, go to 'Data>Custom Connector' and create connector from scratch. Use 'Create from blank'.
     
