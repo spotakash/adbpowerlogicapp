@@ -71,9 +71,11 @@ Using combination of various component. We can achieve seamless secure natively 
     <img src="Architecture/Customer_Connector_Action_Parameter.jpg" width=20% height=20%> 
 
     1.6 *Test Connector*: Post updating connector. Perform Test so that we are sure that it is working and returning result. Now here you will use ``Job ID`` of ADB which you have noted down in step 1. ``Status 200`` mean everything working fine
+
     <img src="Architecture/Custom_Connector_Test.jpg" width=40% height=40%>
 
 2. *Create Connection*: Post Connector Provision, create Connection. Once prompt comes-up, use credential to authorize it. 
+
     <img src="Architecture/Custom_Connector_Connection.jpg" width=30% height=30%>
 
 3. *Create Flow and Test Connection*: Create sample Power Apps Flow. Sample Action where you can start seeing your custom connection and associated `Actions`.
