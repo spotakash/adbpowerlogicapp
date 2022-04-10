@@ -34,11 +34,11 @@ Using combination of various component. We can achieve seamless secure natively 
 
 1. Build Custom Connector
 
-    1.1. *Create Custom Connector*: Inside Power Apps portal, go to 'Data>Custom Connector' and create connector from scratch. Use 'Create from blank'.
+    1.1. **Create Custom Connector**: Inside Power Apps portal, go to 'Data>Custom Connector' and create connector from scratch. Use 'Create from blank'.
     
     <img src="Architecture/CustomerConnector.jpg" width=40% height=40%>
     
-    1.2. *Add Securityy Details*: Add your ADB Cluster URL 
+    1.2. **Add Securityy Details**: Add your ADB Cluster URL 
     
     <img src="Architecture/Custom_Connector_General.jpg" width=40% height=40%>
 
@@ -46,15 +46,15 @@ Using combination of various component. We can achieve seamless secure natively 
 
     <img src="Architecture/Custom_Connector_Security.jpg" width=40% height=40%>
 
-    1.3 *Update AAD Application Return URL*: Now add Return URL (Copied from Step 1.2 to Application created in AAD, so that URIs will accept as destinations when returning authentication responses (tokens). 
+    1.3 **Update AAD Application Return URL**: Now add Return URL (Copied from Step 1.2 to Application created in AAD, so that URIs will accept as destinations when returning authentication responses (tokens). 
 
     <img src="Architecture/AAD_ADB_Application_ReturnURL_Mapping.png" width=50% height=50%>
 
-    1.4 *Add AAD Application API Permission for ADB*: Add ``user_impersonation`` API Permission for ADB. If you don't have permission, work with your AAD Administrator
+    1.4 **Add AAD Application API Permission for ADB**: Add ``user_impersonation`` API Permission for ADB. If you don't have permission, work with your AAD Administrator
 
     <img src="Architecture/API_Premission_ADB.png" width=50% height=50%>
 
-    1.5 *Add Definition*: Hope you have added sample Job in ADB to test. If not, it is simple. Just inside your ADB, create Job and note down ``Job ID``. We shall use this ``Job ID`` to test out end-to-end connectivity.
+    1.5 **Add Definition**: Hope you have added sample Job in ADB to test. If not, it is simple. Just inside your ADB, create Job and note down ``Job ID``. We shall use this ``Job ID`` to test out end-to-end connectivity.
 
     Add Definition/Action to your Connector so that it knows what it needs to do. 
 
@@ -70,23 +70,24 @@ Using combination of various component. We can achieve seamless secure natively 
 
     <img src="Architecture/Customer_Connector_Action_Parameter.jpg" width=20% height=20%> 
 
-    1.6 *Test Connector*: Post updating connector. Perform Test so that we are sure that it is working and returning result. Now here you will use ``Job ID`` of ADB which you have noted down in step 1. ``Status 200`` mean everything working fine
+    1.6 **Test Connector**: Post updating connector. Perform Test so that we are sure that it is working and returning result. Now here you will use ``Job ID`` of ADB which you have noted down in step 1. ``Status 200`` mean everything working fine
 
     <img src="Architecture/Custom_Connector_Test.jpg" width=40% height=40%>
 
-2. *Create Connection*: Post Connector Provision, create Connection. Once prompt comes-up, use credential to authorize it. 
+2. **Create Connection**: Post Connector Provision, create Connection. Once prompt comes-up, use credential to authorize it. 
 
     <img src="Architecture/Custom_Connector_Connection.jpg" width=30% height=30%>
 
-3. *Create Flow and Test Connection*: Create sample Power Apps Flow. Sample Action where you can start seeing your custom connection and associated `Actions`.
+3. **Create Flow and Test Connection**: Create sample Power Apps Flow. Sample Action where you can start seeing your custom connection and associated `Actions`.
 
     <img src="Architecture/Flow_with_Customer_Connector.png" width=40% height=40%>
 
     <img src="Architecture/Flow_Success_Execution.png" width=40% height=40%>
 
-4. *Bonus Step: Validate How AAD Interaction is happening and Token Exchanges*: You can validate how Connector, ADB, Power Apps, Flow are all working together and interacting with AAD by going into ``Sign-in logs``
+4. **Bonus Step: Validate How AAD Interaction is happening and Token Exchanges**: You can validate how Connector, ADB, Power Apps, Flow are all working together and interacting with AAD by going into ``Sign-in logs``
 
     <img src="Architecture/aad_logs.png" width=70% height=70%>
+
 ### Accolades
 
 - Special appreciation to **Pooja Sinde** who has written excellent [medium article](https://medium.com/@poojaanilshinde/create-azure-logic-apps-custom-connector-for-azure-databricks-e51f4524ab27) on same topic using different auth approach
