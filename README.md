@@ -90,7 +90,7 @@ Using combination of various component. We can achieve seamless secure natively 
 
 ### Accolades
 
-- Special appreciation to **Pooja Sinde** who has written excellent [medium article](https://medium.com/@poojaanilshinde/create-azure-logic-apps-custom-connector-for-azure-databricks-e51f4524ab27) on same topic using different auth approach
+- Special appreciation to **Pooja Shinde** who has written excellent [medium article](https://medium.com/@poojaanilshinde/create-azure-logic-apps-custom-connector-for-azure-databricks-e51f4524ab27) on same topic using different auth approach
 
 - My colleague and friend **[Charles Bernard](http://github.com/charlesb)** who was partner in-crime to debug and find out hidden magic behind the scene and co-author of this repo.
 
