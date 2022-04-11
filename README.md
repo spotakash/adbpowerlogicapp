@@ -42,9 +42,9 @@ Using combination of various component. We can achieve seamless secure natively 
     
     <img src="Architecture/Custom_Connector_General.jpg" width=40% height=40%>
 
-    Add AAD Application Client ID/Associate Secret Details. Note down **"Redirect URL"** and add **"Resource URL"** ``2ff814a6-3304-4ab8-85cb-cd0e6f879c1d``. Scope should be **"user_impersonation"**
+    Add AAD Application Client ID/Associate Secret Details. Note down **"Redirect URL"** and add **"Resource URL"** ``azuredatabricks.net`` (preferably) or ``2ff814a6-3304-4ab8-85cb-cd0e6f879c1d``. Scope should be **"user_impersonation"**
 
-    <img src="Architecture/Custom_Connector_Security.jpg" width=40% height=40%>
+    <img src="Architecture/Custom_ConnectorGeneral.jpg" width=40% height=40%>
 
     1.3 **Update AAD Application Return URL**: Now add Return URL (Copied from Step 1.2 to Application created in AAD, so that URIs will accept as destinations when returning authentication responses (tokens). 
 
